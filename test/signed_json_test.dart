@@ -42,14 +42,17 @@ void main() {
   test('verify', () async {
     const encoded =
         'eyJhbGciOiJFUzUxMiIsImtpZCI6InNpZ25lZF9qc29uIn0.eNqr5lJQUCrOz02NL0mtKFGyUlAKBnJKMjLz0hXgLCWuWgALBg2D.AXMx-2iQVtaDIaV14lXhw7j6hW0D0HKyWYu9kUz1W4W0j8gOlDU2YWipyEDWGAGXKgdmIpWl1SeWrVlXdJeVLYFlAe2pqriYxevIzEErRdP1VwLDP7lCiLERCaiz_usAAY2fiHVNqEqFhPr8bxpnWIxiEcoG2BB5zUEoEH_kZ51I0jgV';
-    final result = await SignedJson(verifycationCert).verify<Map<String, dynamic>>(encoded);
+    final result = await SignedJson(verifycationCert)
+        .verify<Map<String, dynamic>>(encoded);
     expect(jsonEncode(result), '{"some_text":"Something Something"}');
   });
 
   test('decrypt', () async {
     const encrypted =
         'eyJlbmMiOiJBMTI4Q0JDLUhTMjU2IiwiYWxnIjoiUlNBMV81In0.a5a73YZgaQwTH3V5pqMXUIuAxKUqZdH5rQxN9RBWNiizJK03BamKqOZjbHuWv18qwAkgWxudRXF4io2vVZv5gChmpwQ3KjzS2z4ccMY5GNnf-_5SSX2bzIvoEJvBaFvseA049cBsdvcfTKKZZXJXe_z4k_iB-hyvo5JOQ8ki30sToDeMT9sVkLfh9icMP-DJ73zzqmsK9twpZgjChmEdHqJbx5xmejfSjdW76-RTWm3LEFkTBsg_Ye3Lupj9qmAkIQvC9Xgbvu2tCcmgSLpQz135H33GSP_cYnRfX0ho-nXPOpvba4ASJL68S_BBmrpCTG2U1w95RKufqVhwKKZUQg.tSsXy0GVk6CsJnnkbjO-nQ.KPFLPN8tLK3vqAvLvLO9IO6Q88vPVPNO1YoiP3tsaP_sbNTa92W514eakZ0QiaNU.5TWtnlE_Bbx4xo95mRoITw';
-    final result = await SignedJson(verifycationCert, decryptionCert: decryptCert).decrypt<Map<String, dynamic>>(encrypted);
+    final result =
+        await SignedJson(verifycationCert, decryptionCert: decryptCert)
+            .decrypt<Map<String, dynamic>>(encrypted);
     expect(jsonEncode(result), '{"some_text":"Something Something"}');
   });
 }

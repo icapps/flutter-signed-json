@@ -87,7 +87,8 @@ class _MyAppState extends State<MyApp> {
   Future<void> _getData() async {
     try {
       final data = await _signedJson.verify<Map<String, dynamic>>(encoded);
-      final encryptedData = await _signedJson.decrypt<Map<String, dynamic>>(encryptedEncoded);
+      final encryptedData =
+          await _signedJson.decrypt<Map<String, dynamic>>(encryptedEncoded);
       _data = jsonEncode(data);
       _encryptedData = jsonEncode(encryptedData);
     } catch (e, stack) {

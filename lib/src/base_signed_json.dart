@@ -12,7 +12,8 @@ class SignedJsonUtil {
 
   bool get useNativeSignedJson => Platform.isAndroid;
 
-  Future<R> run<P, R>(FutureOr<R> Function(P) function, P param) async => compute(function, param);
+  Future<R> run<P, R>(FutureOr<R> Function(P) function, P param) async =>
+      compute(function, param);
 
   Future<String> internalVerify(String cert, String encoded) async {
     if (useNativeSignedJson) return NativeSignedJson.verify(cert, encoded);

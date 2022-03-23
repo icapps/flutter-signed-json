@@ -11,9 +11,9 @@ class SignedJson {
     this.decryptionCert,
   });
 
-  Future<T> verify<T>(String encoded) async =>
-      _signedJsonUtil.run(parseAndDecode,
-          await _signedJsonUtil.internalVerify(verificationCert, encoded));
+  Future<T> verify<T>(String encoded) async => _signedJsonUtil.run(
+      parseAndDecode,
+      await _signedJsonUtil.internalVerify(verificationCert, encoded));
 
   Future<T> decrypt<T>(String encoded) async {
     final decryptionCert = this.decryptionCert;
