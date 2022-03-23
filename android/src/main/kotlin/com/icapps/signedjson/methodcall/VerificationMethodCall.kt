@@ -2,8 +2,8 @@ package com.icapps.signedjson.methodcall
 
 import android.os.Handler
 import android.os.Looper
-import com.icapps.jose.extension.checkRequiredField
-import com.icapps.jose.sdk.JoseVerification
+import com.icapps.signedjson.extension.checkRequiredField
+import com.icapps.signedjson.sdk.JoseVerification
 import io.flutter.plugin.common.MethodCall
 import io.flutter.plugin.common.MethodChannel.Result
 import kotlin.concurrent.thread

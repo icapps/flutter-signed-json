@@ -5,7 +5,7 @@ import 'dart:io';
 import 'package:flutter/services.dart';
 
 class NativeSignedJson {
-  static const MethodChannel _channel = MethodChannel('jose');
+  static const MethodChannel _channel = MethodChannel('signed_json');
 
   static Future<String> verify(String cert, String encoded) async {
     final zipBytes = await _channel.invokeMethod<List<int>>(
