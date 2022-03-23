@@ -1,0 +1,22 @@
+PODS:
+  - Flutter (1.0.0)
+  - signed_json (0.0.1):
+    - Flutter
+
+DEPENDENCIES:
+  - Flutter (from `Flutter`)
+  - signed_json (from `.symlinks/plugins/signed_json/ios`)
+
+EXTERNAL SOURCES:
+  Flutter:
+    :path: Flutter
+  signed_json:
+    :path: ".symlinks/plugins/signed_json/ios"
+
+SPEC CHECKSUMS:
+  Flutter: 50d75fe2f02b26cc09d224853bb45737f8b3214a
+  signed_json: 6a15f9fb99b436adec3e7f62a8b81bbf41716c49
+
+PODFILE CHECKSUM: aafe91acc616949ddb318b77800a7f51bffa2a4c
+
+COCOAPODS: 1.11.2

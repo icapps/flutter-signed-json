@@ -1,0 +1,33 @@
+name: signed_json
+description: An implementation to read signed jsons
+version: 0.0.1
+homepage:
+
+environment:
+  sdk: ">=2.15.0 <3.0.0"
+  flutter: ">=2.5.0"
+
+dependencies:
+  computer: ^3.2.1
+  flutter:
+    sdk: flutter
+  flutter_web_plugins:
+    sdk: flutter
+  jose: ^0.3.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^1.0.0
+
+flutter:
+  plugin:
+    platforms:
+      android:
+        package: com.icapps.signedjson
+        pluginClass: SignedJsonPlugin
+      ios:
+        pluginClass: SignedJsonPlugin
+      web:
+        pluginClass: SignedJsonWeb
+        fileName: signed_json_web.dart

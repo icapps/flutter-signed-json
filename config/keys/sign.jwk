@@ -1,0 +1,10 @@
+{
+    "kty": "EC",
+    "d": "Afb6kaJr7mC1ZzFoCq6O_X65geEsX9Km6F1_5uT4EPVwMX0sgmYLxGihsAPw_3lheQ73_SX0hqAOyt17vObL62jT",
+    "use": "sig",
+    "crv": "P-521",
+    "kid": "signed_json",
+    "x": "AT0MMaUvyZdRZaCIqkLZPks0NE4kPZhgTwIivnr0tDhcl7Ao9SSdiXPuCsZS3HaAuQq5Kk1sSWGwNtteiq5JsiSg",
+    "y": "AVKxKaIYJewNWA3DvD5qzpW9vSMt6A1crUqVpQ-MKAOVsCL_RwwvQoedRoMbYpf6T7XLflECaI58pBtv8JfF8zVb",
+    "alg": "ES512"
+}
