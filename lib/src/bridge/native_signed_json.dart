@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter/services.dart';
@@ -7,7 +6,7 @@ import 'package:flutter/services.dart';
 class NativeSignedJson {
   static const MethodChannel _channel = MethodChannel('signed_json');
 
-  static Future<String> verify(String cert, String encoded) async {
+  static Future<List<int>> verify(String cert, String encoded) async {
     final zipBytes = await _channel.invokeMethod<List<int>>(
           'verify',
           {
@@ -16,11 +15,10 @@ class NativeSignedJson {
           },
         ) ??
         [];
-    final unzipped = ZLibCodec().decoder.convert(zipBytes);
-    return utf8.decode(unzipped);
+    return ZLibCodec().decoder.convert(zipBytes);
   }
 
-  static Future<String> verifyAndDecrypt(
+  static Future<List<int>> verifyAndDecrypt(
       String certVerify, String certDecrypt, String encoded) async {
     final zipBytes = await _channel.invokeMethod<List<int>>(
           'verifyAndDecrypt',
@@ -31,11 +29,10 @@ class NativeSignedJson {
           },
         ) ??
         [];
-    final unzipped = ZLibCodec().decoder.convert(zipBytes);
-    return utf8.decode(unzipped);
+    return ZLibCodec().decoder.convert(zipBytes);
   }
 
-  static Future<String> decrypt(String cert, String encoded) async {
+  static Future<List<int>> decrypt(String cert, String encoded) async {
     final zipBytes = await _channel.invokeMethod<List<int>>(
           'decrypt',
           {
@@ -44,7 +41,6 @@ class NativeSignedJson {
           },
         ) ??
         [];
-    final unzipped = ZLibCodec().decoder.convert(zipBytes);
-    return utf8.decode(unzipped);
+    return ZLibCodec().decoder.convert(zipBytes);
   }
 }

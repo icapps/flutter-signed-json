@@ -1,3 +1,6 @@
+## 0.0.3 (23-03-2022)
+- Added signed bytes
+
 ## 0.0.2 (23-03-2022)
 - Fixed typo
 
