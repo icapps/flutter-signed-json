@@ -11,15 +11,11 @@ class SignedJson {
     this.decryptionCert,
   });
 
-  Future<Map<String, dynamic>> verify(String encoded) async =>
+  Future<T> verify<T>(String encoded) async =>
       _signedJsonUtil.run(parseAndDecode,
           await _signedJsonUtil.internalVerify(verificationCert, encoded));
 
-  Future<List<dynamic>> verifyList(String encoded) async => _signedJsonUtil.run(
-      parseAndDecode,
-      await _signedJsonUtil.internalVerify(verificationCert, encoded));
-
-  Future<String> decrypt(String encoded) async {
+  Future<T> decrypt<T>(String encoded) async {
     final decryptionCert = this.decryptionCert;
     if (decryptionCert == null) {
       throw ArgumentError('Decryption key can not be null');
@@ -28,21 +24,12 @@ class SignedJson {
         await _signedJsonUtil.internalDecrypt(decryptionCert, encoded));
   }
 
-  Future<Map<String, dynamic>> verifyAndDecrypt(String encoded) async {
+  Future<T> verifyAndDecrypt<T>(String encoded) async {
     final decryptionCert = this.decryptionCert;
     if (decryptionCert == null) {
       throw ArgumentError('Decryption key can not be null');
     }
-    return _signedJsonUtil.verifyAndDecrypt<Map<String, dynamic>>(
-        verificationCert, decryptionCert, encoded);
-  }
-
-  Future<List<dynamic>> verifyAndDecryptList(String encoded) async {
-    final decryptionCert = this.decryptionCert;
-    if (decryptionCert == null) {
-      throw ArgumentError('Decryption key can not be null');
-    }
-    return await _signedJsonUtil.verifyAndDecrypt<List<dynamic>>(
+    return _signedJsonUtil.verifyAndDecrypt<T>(
         verificationCert, decryptionCert, encoded);
   }
 }

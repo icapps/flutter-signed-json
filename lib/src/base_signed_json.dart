@@ -2,35 +2,17 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:computer/computer.dart';
 import 'package:flutter/foundation.dart';
 import 'package:jose/jose.dart';
 import 'package:signed_json/src/bridge/native_signed_json.dart';
 import 'package:signed_json/src/model/computer_args.dart';
 
 class SignedJsonUtil {
-  late final Computer computer;
   late final Future<void> computerStarting;
 
   bool get useNativeSignedJson => Platform.isAndroid;
 
-  SignedJsonUtil() {
-    if (!Platform.isIOS) _startComputer();
-  }
-
-  Future<void> _startComputer() async {
-    final completer = Completer<void>();
-    computerStarting = completer.future;
-    computer = Computer.shared();
-    await computer.turnOn();
-    completer.complete();
-  }
-
-  Future<R> run<P, R>(FutureOr<R> Function(P) function, P param) async {
-    if (Platform.isIOS) return compute(function, param);
-    await computerStarting;
-    return computer.compute(function, param: param);
-  }
+  Future<R> run<P, R>(FutureOr<R> Function(P) function, P param) async => compute(function, param);
 
   Future<String> internalVerify(String cert, String encoded) async {
     if (useNativeSignedJson) return NativeSignedJson.verify(cert, encoded);

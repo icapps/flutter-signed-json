@@ -31,6 +31,8 @@ https://mkjwk.org -> RSA
 - Key ID: Specify: signed_json
 - Show X.509: No
 
+Remove the use/kid/alg
+
 Copy
 ### Get the decryption key
-Copy the encryption key & remove the use/kid/alg
+Copy the encryption key
