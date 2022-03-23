@@ -44,12 +44,15 @@ class SignedJsonUtil {
     return run(_decryptOnBackgroundThread, map);
   }
 
-  Future<T> verifyAndDecrypt<T>(String certVerify, String certDecrypt, String encoded) async {
+  Future<T> verifyAndDecrypt<T>(
+      String certVerify, String certDecrypt, String encoded) async {
     String result;
     if (useNativeSignedJson) {
-      result = await NativeSignedJson.verifyAndDecrypt(certVerify, certDecrypt, encoded);
+      result = await NativeSignedJson.verifyAndDecrypt(
+          certVerify, certDecrypt, encoded);
     } else {
-      result = await internalDecrypt(certDecrypt, await internalVerify(certVerify, encoded));
+      result = await internalDecrypt(
+          certDecrypt, await internalVerify(certVerify, encoded));
     }
     return run(parseAndDecode, result);
   }
@@ -58,7 +61,8 @@ class SignedJsonUtil {
 Future<String> _verifyOnBackgroundThread(Map<String, dynamic> data) async {
   final arguments = ComputerArgs.fromJson(data);
   final jws = JsonWebSignature.fromCompactSerialization(arguments.encoded);
-  final jwk = JsonWebKey.fromJson(jsonDecode(arguments.cert) as Map<String, dynamic>);
+  final jwk =
+      JsonWebKey.fromJson(jsonDecode(arguments.cert) as Map<String, dynamic>);
   final keyStore = JsonWebKeyStore()..addKey(jwk);
   final payload = await jws.getPayload(keyStore);
   final unzipped = ZLibCodec().decoder.convert(payload.data);
@@ -68,7 +72,8 @@ Future<String> _verifyOnBackgroundThread(Map<String, dynamic> data) async {
 Future<String> _decryptOnBackgroundThread(Map<String, dynamic> data) async {
   final arguments = ComputerArgs.fromJson(data);
   final jwe = JsonWebEncryption.fromCompactSerialization(arguments.encoded);
-  final jwk = JsonWebKey.fromJson(jsonDecode(arguments.cert) as Map<String, dynamic>);
+  final jwk =
+      JsonWebKey.fromJson(jsonDecode(arguments.cert) as Map<String, dynamic>);
   final keyStore = JsonWebKeyStore()..addKey(jwk);
   final payload = await jwe.getPayload(keyStore);
   final unzipped = ZLibCodec().decoder.convert(payload.data);

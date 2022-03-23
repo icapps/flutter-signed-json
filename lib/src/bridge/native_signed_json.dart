@@ -8,7 +8,7 @@ class NativeSignedJson {
   static const MethodChannel _channel = MethodChannel('jose');
 
   static Future<String> verify(String cert, String encoded) async {
-    var zipBytes = await _channel.invokeMethod<List<int>>(
+    final zipBytes = await _channel.invokeMethod<List<int>>(
           'verify',
           {
             'cert': "{\"keys\": [$cert]}",
@@ -20,8 +20,9 @@ class NativeSignedJson {
     return utf8.decode(unzipped);
   }
 
-  static Future<String> verifyAndDecrypt(String certVerify, String certDecrypt, String encoded) async {
-    var zipBytes = await _channel.invokeMethod<List<int>>(
+  static Future<String> verifyAndDecrypt(
+      String certVerify, String certDecrypt, String encoded) async {
+    final zipBytes = await _channel.invokeMethod<List<int>>(
           'verifyAndDecrypt',
           {
             'certVerify': "{\"keys\": [$certVerify]}",
@@ -35,7 +36,7 @@ class NativeSignedJson {
   }
 
   static Future<String> decrypt(String cert, String encoded) async {
-    var zipBytes = await _channel.invokeMethod<List<int>>(
+    final zipBytes = await _channel.invokeMethod<List<int>>(
           'decrypt',
           {
             'cert': cert,
