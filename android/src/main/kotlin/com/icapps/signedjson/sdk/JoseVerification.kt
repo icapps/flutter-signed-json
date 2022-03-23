@@ -14,15 +14,15 @@ object JoseVerification {
     }
 
     fun verify(cert: String, encoded: String): ByteArray {
-        val jws = JsonWebSignature();
-        jws.setCompactSerialization(encoded);    
-        val jwkSelector = VerificationJwkSelector();
-        val jsonWebKeySet = JsonWebKeySet(cert);
-        val jwk = jwkSelector.select(jws, jsonWebKeySet.getJsonWebKeys());    
-        jws.setKey(jwk.getKey());
+        val jws = JsonWebSignature()
+        jws.compactSerialization = encoded
+        val jwkSelector = VerificationJwkSelector()
+        val jsonWebKeySet = JsonWebKeySet(cert)
+        val jwk = jwkSelector.select(jws, jsonWebKeySet.jsonWebKeys)
+        jws.key = jwk.key
         val verified = jws.verifySignature()
         if (verified) {
-            return jws.getPayloadBytes()
+            return jws.payloadBytes
         }
         return byteArrayOf()
     }
@@ -44,10 +44,10 @@ object JoseVerification {
     }
 
     fun decrypt(cert: String, encoded: String): ByteArray {
-        val jwe = JsonWebEncryption();
-        jwe.setCompactSerialization(encoded);    
-        val jwk = PublicJsonWebKey.Factory.newPublicJwk(cert);
-        jwe.setKey(jwk.getPrivateKey());
-        return jwe.getPlaintextBytes()
+        val jwe = JsonWebEncryption()
+        jwe.compactSerialization = encoded
+        val jwk = PublicJsonWebKey.Factory.newPublicJwk(cert)
+        jwe.key = jwk.privateKey
+        return jwe.plaintextBytes
     }
 }
