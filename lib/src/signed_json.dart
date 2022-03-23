@@ -31,7 +31,7 @@ class SignedJson {
   }
 
   /// First a jwt is verified using (verify) after that you get another jwt
-  /// this new jwt is used to decrypt using (dycrypt)
+  /// this new jwt is used to decrypt using (decrypt)
   Future<T> verifyAndDecrypt<T>(String encoded) async {
     final decryptionCert = this.decryptionCert;
     if (decryptionCert == null) {
