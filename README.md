@@ -14,6 +14,7 @@ Algorithm: PS512: RSASSA-PSS using SHA-512 and MGF1 with SHA-512
 Key ID: Specify: signed_json
 Show X.509: No
 
+Remove `alg` from key
 
 ## Get the verify key
 Copy the sign key & Remove `use`, `kid`, `alg` from the private key

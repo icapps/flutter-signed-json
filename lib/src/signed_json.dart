@@ -1,6 +1,6 @@
 import 'package:signed_json/src/base_signed_json.dart';
 
-abstract class SignedJson {
+class SignedJson {
   final _signedJsonUtil = SignedJsonUtil();
 
   final String verificationKey;
