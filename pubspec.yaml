@@ -1,5 +1,6 @@
 name: signed_json
 description: An implementation to read signed jsons
+repository: https://github.com/icapps/flutter-signed-json
 version: 0.0.1
 homepage:
 
